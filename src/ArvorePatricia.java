@@ -35,7 +35,7 @@ public class ArvorePatricia {
         String pI, pD;
         int i=0, tamanho;
 
-        if(raiz==null) // raiz esta vazia
+        if(raiz.getCabeca()==null) // raiz esta vazia
             raiz.setCabeca(new No(info,true,null,null));
         else
         {
@@ -90,5 +90,13 @@ public class ArvorePatricia {
                 }
             }
         }
+    }
+
+    public void mostrarNodos(){
+
+    }
+
+    public void exibirPalavras(){
+
     }
 }
