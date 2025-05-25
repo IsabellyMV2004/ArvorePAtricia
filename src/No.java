@@ -17,8 +17,8 @@ public class No {
     }
 
     public int getTamanhoIgualdade(String info){
-        int i;
-        while (i<info.length() && i<palavra.length() && info[i]==palavra[i])
+        int i=0;
+        while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
             i++;
         return i;
     }

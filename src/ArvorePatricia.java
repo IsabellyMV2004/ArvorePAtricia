@@ -7,30 +7,30 @@ public class ArvorePatricia {
 
     public String separarPalavrasIguais(String info, String palavra){
         String p;
-        int i;
-        p = info[0];
-        while (i<info.length() && i<palavra.length() && info[i]==palavra[i])
+        int i=0;
+        p = "" + info.charAt(0);
+        while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
         {
-            p = p+info[i];
+            p = p+info.charAt(i);
             i++;
         }
         return p;
     }
     public String separarPalavraDiferentes(String info, String palavra){
         String p;
-        int i;
-        p = info[0];
-        while (i<info.length() && i<palavra.length() && info[i]==palavra[i])
+        int i=0;
+        p = "" + info.charAt(0);
+        while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
             i++;
         while (i<palavra.length()) {
-            p = p+palavra[i];
+            p = p+palavra.charAt(i);
             i++;
         }
         return p;
     }
 
 
-    public void inserir(String info){
+    public void inserir(String info, No raiz){
         No novo, aux, ant;
         String pI, pD;
         int i=0, tamanho;
@@ -39,7 +39,7 @@ public class ArvorePatricia {
             raiz.setCabeca(new No(info,true,null,null));
         else
         {
-            if(raiz.getCabeca().getPalavra()[0]==info[0])
+            if(raiz.getCabeca().getPalavra().charAt(0)==info.charAt(0))
             {
 
             }
@@ -47,7 +47,7 @@ public class ArvorePatricia {
             {
                 aux = raiz.getCabeca();
                 ant = null;
-                while (aux != null && aux.getPalavra()[0] < info[0]) //buscar pela primeira letra da info na arvore
+                while (aux != null && aux.getPalavra().charAt(0) < info.charAt(0)) //buscar pela primeira letra da info na arvore
                 {
                     ant = aux;
                     aux = aux.getCauda();
@@ -57,7 +57,7 @@ public class ArvorePatricia {
                     ant.setCauda(new No(info, true, null, null));
                 else
                 {
-                    if (aux.getPalavra()[0] > info[0]) // primeira letra não foi encontrada na posição que deveria estar, deve ser adicionada na posição correta
+                    if (aux.getPalavra().charAt(0) > info.charAt(0)) // primeira letra não foi encontrada na posição que deveria estar, deve ser adicionada na posição correta
                     {
                         if (ant == null) // significa que deve ser inserida como a letra da primeira posição da raiz
                         {
@@ -74,16 +74,16 @@ public class ArvorePatricia {
                     else
                     { // encontrou a primeira letra
                        tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-                       if(tamanho == info.length()){  // se for do tamanho do info que dizer vai ter que dividir a palavra em dois
+                       if(tamanho == info.length()){  // se for do tamanho do info quer dizer vai ter que dividir a palavra em dois
                            aux.setPalavra(separarPalavraDiferentes(info, aux.getPalavra()));
                            novo = new No(info,true,aux,aux.getCauda());
                            ant.setCauda(novo);
                        }
-                       else if(tamanho < info.length()){ // se o tamanho for menor que o info que dizer que é o info que tem valores a mais que devem ser divididos
-                            if(aux.getCauda()==null) // o no não possui ramificações abaixo dele
+                       else if(tamanho < info.length()){ // se o tamanho for menor quer o info que dizer que é o info que tem valores a mais que devem ser divididos
+                            if(aux.getCabeca()==null) // o no não possui ramificações abaixo dele
                                 aux.setCabeca(new No(separarPalavraDiferentes(info, aux.getPalavra()), true, null, null));
                             else{ // o no possui ramificações abaixo dele
-
+                                    inserir(separarPalavraDiferentes(info,aux.getPalavra()),aux);
                             }
                        }
                     }
