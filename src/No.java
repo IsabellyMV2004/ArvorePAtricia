@@ -14,8 +14,16 @@ public class No {
         this.flag = flag;
         this.cabeca = cabeca;
         this.cauda = cauda;
-
     }
+
+    public int getTamanhoIgualdade(String info){
+        int i;
+        while (i<info.length() && i<palavra.length() && info[i]==palavra[i])
+            i++;
+        return i;
+    }
+
+
 
     public String getPalavra() {
         return palavra;
