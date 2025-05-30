@@ -29,31 +29,44 @@ public class ArvorePatricia {
         return p;
     }
 
+    public void dividir(String info, No raiz){
+        No novo, aux, ant;
+        int i=0, tamanho;
+
+        aux = raiz.getCabeca();
+        tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
+        if(tamanho < info.length()){
+            if(tamanho == aux.getPalavra().length()){
+                if(aux.getCabeca() == null){
+
+                }
+            }
+            else{
+
+            }
+
+        }
+        else{
+
+        }
+
+    }
+
 
     public void inserir(String info, No raiz){
         No novo, aux, ant;
         String pI, pD;
         int i=0, tamanho;
 
+        novo = new No(info,true,null,null);
         if(raiz.getCabeca()==null) // raiz esta vazia
-            raiz.setCabeca(new No(info,true,null,null));
+            raiz.setCabeca(novo);
         else
         {
-            if(raiz.getCabeca().getPalavra().charAt(0)==info.charAt(0))
+            if(raiz.getCabeca().getPalavra().charAt(0)<info.charAt(0))  // primeira letra da raiz vem depois da letra de info
             {
-                if(raiz.getCabeca().getPalavra().equals(info))
-                    raiz.setFlag(true);
-                else
-                {
-                    tamanho = raiz.getCabeca().getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-                    if(tamanho < info.length()){
-
-                    }
-                    else{
-
-                    }
-                }
-
+                novo.setCauda(raiz.getCauda());
+                raiz.setCabeca(novo);
             }
             else
             {
@@ -66,20 +79,25 @@ public class ArvorePatricia {
                 }
 
                 if (aux == null)// primeira letra não foi encontrada, se não tem a letra logo não tem a palavra, tem que inserir
-                    ant.setCauda(new No(info, true, null, null));
+                    ant.setCauda(novo);
                 else
                 {
+
+                    if(aux.getPalavra().equals(info))
+                        aux.setFlag(true);
+                    else{
+
+                    }
                     if (aux.getPalavra().charAt(0) > info.charAt(0)) // primeira letra não foi encontrada na posição que deveria estar, deve ser adicionada na posição correta
                     {
                         if (ant == null) // significa que deve ser inserida como a letra da primeira posição da raiz
                         {
-                            novo = new No(info, true, null, null);
                             novo.setCauda(raiz.getCabeca());
                             raiz.setCabeca(novo);
                         }
                         else
                         {
-                            novo = new No(info, true, null, aux);
+                            novo.setCauda(aux);
                             ant.setCauda(novo);
                         }
                     }
