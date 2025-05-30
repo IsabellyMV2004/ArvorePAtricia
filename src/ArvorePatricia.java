@@ -41,6 +41,18 @@ public class ArvorePatricia {
         {
             if(raiz.getCabeca().getPalavra().charAt(0)==info.charAt(0))
             {
+                if(raiz.getCabeca().getPalavra().equals(info))
+                    raiz.setFlag(true);
+                else
+                {
+                    tamanho = raiz.getCabeca().getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
+                    if(tamanho < info.length()){
+
+                    }
+                    else{
+
+                    }
+                }
 
             }
             else
