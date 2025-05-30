@@ -82,7 +82,6 @@ public class ArvorePatricia {
                     ant.setCauda(novo);
                 else
                 {
-
                     if(aux.getPalavra().equals(info))
                         aux.setFlag(true);
                     else{
