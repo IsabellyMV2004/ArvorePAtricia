@@ -55,7 +55,7 @@ public class ArvorePatricia {
 
     public void inserir(String info, No raiz){
         No novo, aux, ant;
-        String pI, pD;
+        String igual, diferente1, diferente2;
         int i=0, tamanho;
 
         novo = new No(info,true,null,null);
@@ -86,11 +86,14 @@ public class ArvorePatricia {
                         aux.setFlag(true);
                     else {
                         tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-                        if (tamanho == info.length()) {  // se for do tamanho do info quer dizer vai ter que dividir a palavra em dois
-
-                        } else{ // se o tamanho for menor quer o info que dizer que é o info que tem valores a mais que devem ser divididos
+                        if (tamanho == info.length()) {
+                            diferente1 = separarPalavraDiferentes(info,aux.getPalavra());
+                            aux.setPalavra(info);
+                            inserir(diferente1,aux);
+                        } else{
                             if(tamanho == aux.getPalavra().length()){
-
+                                diferente1 = separarPalavraDiferentes(aux.getPalavra(),info);
+                                inserir(diferente1,aux);
                             }
                             else{
 
