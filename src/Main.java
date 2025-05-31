@@ -5,7 +5,7 @@ public class Main {
       String[] palavras = new String[65];
       inserirPalavras(palavras);
 
-      for (int i = 49; i >= 0; i--) {
+      for (int i = 64; i >= 0; i--) {
          arvore.inserir(palavras[i], arvore.raiz);
          arvore.mostrarNodos();
       }
