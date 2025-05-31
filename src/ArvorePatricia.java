@@ -41,13 +41,16 @@ public class ArvorePatricia {
             raiz.setCabeca(novo);
         else
         {
+            System.out.println("CCCCCCCC");
             if(raiz.getCabeca().getPalavra().charAt(0)>info.charAt(0))  // primeira letra da raiz vem depois da letra de info
             {
+                System.out.println("FFFFFFF");
                 novo.setCauda(raiz.getCauda());
                 raiz.setCabeca(novo);
             }
             else
             {
+                System.out.println("lllllll");
                 aux = raiz.getCabeca();
                 ant = null;
                 while (aux != null && aux.getPalavra().charAt(0) < info.charAt(0)) //buscar pela primeira letra da info na arvore
@@ -59,9 +62,10 @@ public class ArvorePatricia {
                 if (aux == null)// primeira letra não foi encontrada, se não tem a letra logo não tem a palavra, tem que inserir
                     ant.setCauda(novo);
                 else
-                {
+                {System.out.println("palavra aux ="+aux.getPalavra());
                     if(aux.getPalavra().charAt(0) > info.charAt(0))
                     {
+                        System.out.println("d");
                         novo.setCauda(aux);
                         ant.setCauda(novo);
                     }
@@ -69,8 +73,10 @@ public class ArvorePatricia {
                         if(aux.getPalavra().equals(info)) // a palavra de aux é igual a info
                             aux.setFlag(true);
                         else {
+                            System.out.println("BBBBBBBBBBBBBBB");
                             tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
                             if (tamanho == info.length()) { // a palavra de aux contem info dentro dela
+
                                 diferente = separarParteDiferente(info,aux.getPalavra()); //retira a parte de aux que info não possui
                                 ant = aux.getCabeca();
                                 novo.setPalavra(diferente);
@@ -117,7 +123,7 @@ public class ArvorePatricia {
     public void mostrarNodos(){
         Fila fila = new Fila();
         No aux;
-        int i = 0,nivel = nivelMaximo()+1;
+        int nivel = nivelMaximo()+1;
         fila.inserir(raiz.getCabeca());
         while (!fila.filaVazia()){
             aux = fila.retirar();
@@ -138,6 +144,15 @@ public class ArvorePatricia {
                     System.out.println();
                 }
             }
+        }
+    }
+
+
+    public void mostrar(){
+        No aux = raiz.getCabeca();
+        while (aux!=null){
+            System.out.printf(aux.getPalavra()+ "\t");
+            aux = aux.getCauda();
         }
     }
 

@@ -7,7 +7,8 @@ public class Main {
 
       for (int i = 64; i >= 0; i--) {
          arvore.inserir(palavras[i], arvore.raiz);
-         arvore.mostrarNodos();
+         //arvore.mostrarNodos();
+         arvore.mostrar();
       }
 
       // arvore.exibirPalavras();

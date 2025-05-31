@@ -1,52 +1,29 @@
 public class Fila {
-    private int fim;
-    No dados;
+    private NoFila inicio, fim;
 
-    public void Fila(){
-        fim = 0;
-        dados = null;
+    public Fila() {
+        inicio = fim = null;
     }
 
-    public boolean filaVazia(){
-        return fim == 0;
+    public boolean filaVazia() {
+        return inicio == null;
     }
 
-    public  void inserir(No elemento){
-        No aux = dados;
-
-        if(dados==null){
-            dados = elemento;
-        }
-        else {
-            for (int i = 0; i < fim; i++) {
-                aux = aux.getCauda();
-            }
-            aux.setCauda(elemento);
+    public void inserir(No elemento) {
+        NoFila novo = new NoFila(elemento);
+        if (filaVazia()) {
+            inicio = fim = novo;
+        } else {
+            fim.setProximo(novo);
+            fim = novo;
         }
     }
 
-    public No retirar(){
-        No aux = null;
-        if(dados!=null) {
-            aux = dados;
-            dados = dados.getCauda();
-        }
-        return aux;
+    public No retirar() {
+        if (filaVazia()) return null;
+        No dado = inicio.getDado();
+        inicio = inicio.getProximo();
+        if (inicio == null) fim = null;
+        return dado;
     }
-
-    public String elementoInicio(){
-        return dados.getPalavra();
-    }
-
-    public String elementoFim(){
-        if(dados!=null) {
-            No aux = dados;
-            for (int i = 0; i < fim; i++) {
-                aux = aux.getCauda();
-            }
-            return aux.getPalavra();
-        }
-        return "";
-    }
-
 }
