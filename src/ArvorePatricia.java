@@ -55,7 +55,7 @@ public class ArvorePatricia {
 
     public void inserir(String info, No raiz){
         No novo, aux, ant;
-        String igual, diferente1, diferente2;
+        String igual, diferente;
         int i=0, tamanho;
 
         novo = new No(info,true,null,null);
@@ -87,20 +87,28 @@ public class ArvorePatricia {
                     else {
                         tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
                         if (tamanho == info.length()) {
-                            diferente1 = separarParteDiferente(info,aux.getPalavra());
+                            diferente = separarParteDiferente(info,aux.getPalavra());
                             ant = aux.getCabeca();
-                            aux.setCabeca(new No(diferente1,true,ant,null));
+                            aux.setCabeca(new No(diferente,true,ant,null));
                             aux.setPalavra(info);
                         } else{
                             if(tamanho == aux.getPalavra().length()){
-                                diferente1 = separarParteDiferente(aux.getPalavra(),info);
-                                inserir(diferente1,aux);
+                                diferente = separarParteDiferente(aux.getPalavra(),info);
+                                inserir(diferente,aux);
                             }
                             else{
+                                diferente = separarParteDiferente(info,aux.getPalavra());
+                                igual = separarParteIgual(info,aux.getPalavra());
 
+                                ant = aux.getCabeca();
+                                aux.setCabeca(new No(diferente,true,ant,null));
+                                diferente = separarParteDiferente(aux.getPalavra(),info);
+                                aux.setPalavra(igual);
+                                inserir(diferente,aux);
                             }
                         }
                     }
+                }
             }
         }
     }
