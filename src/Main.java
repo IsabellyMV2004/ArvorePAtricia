@@ -48,6 +48,12 @@ public class Main {
       palavras[27] = "zebra";
       palavras[28] = "abacaxi";
       palavras[29] = "bicudo";
+      palavras[30] = "amor";
+      palavras[31] = "carinho";
+      palavras[32] = "inteligencia";
+      palavras[33] = "moral";
+      palavras[34] = "justica";
+      palavras[35] = "artificial";
       palavras[36] = "fe";
       palavras[37] = "comida";
       palavras[38] = "com";

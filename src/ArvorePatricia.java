@@ -34,7 +34,7 @@ public class ArvorePatricia {
         No novo, aux, ant;
         String igual, diferente;
         int tamanho;
-        //System.out.println(info);
+        System.out.println("\n\n\n\naaaaaaaaaa "+info);
 
         novo = new No(info,true,null,null);
         if(r.getCabeca()==null)// raiz esta vazia
