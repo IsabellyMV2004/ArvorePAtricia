@@ -13,15 +13,24 @@ public class Fila {
 
     public  void inserir(No elemento){
         No aux = dados;
-        for (int i = 0; i < fim; i++) {
-            aux = aux.getCauda();
+
+        if(dados==null){
+            dados = elemento;
         }
-        aux.setCauda(elemento);
+        else {
+            for (int i = 0; i < fim; i++) {
+                aux = aux.getCauda();
+            }
+            aux.setCauda(elemento);
+        }
     }
 
     public No retirar(){
-        No aux = dados;
-        dados = dados.getCauda();
+        No aux = null;
+        if(dados!=null) {
+            aux = dados;
+            dados = dados.getCauda();
+        }
         return aux;
     }
 
@@ -30,11 +39,14 @@ public class Fila {
     }
 
     public String elementoFim(){
-        No aux = dados;
-        for (int i = 0; i < fim; i++) {
-            aux = aux.getCauda();
+        if(dados!=null) {
+            No aux = dados;
+            for (int i = 0; i < fim; i++) {
+                aux = aux.getCauda();
+            }
+            return aux.getPalavra();
         }
-        return aux.getPalavra();
+        return "";
     }
 
 }

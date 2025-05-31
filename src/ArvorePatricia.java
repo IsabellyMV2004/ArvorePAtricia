@@ -6,9 +6,8 @@ public class ArvorePatricia {
     }
 
     public String separarParteIgual(String info, String palavra){
-        String p;
+        String p = "";
         int i=0;
-        p = "" + info.charAt(0);
         while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
         {
             p = p+info.charAt(i);
@@ -18,9 +17,8 @@ public class ArvorePatricia {
     }
 
     public String separarParteDiferente(String info, String palavra){
-        String p;
+        String p = "";
         int i=0;
-        p = "" + info.charAt(0);
         while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
             i++;
         while (i<palavra.length()) {
