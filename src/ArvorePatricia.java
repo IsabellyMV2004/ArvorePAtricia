@@ -120,7 +120,7 @@ public class ArvorePatricia {
         return i;
     }
 
-    /*public void mostrarNodos(){
+    public void mostrarNodos(){
         Fila fila = new Fila();
         No aux;
         int nivel = nivelMaximo()+1;
@@ -145,10 +145,10 @@ public class ArvorePatricia {
                 }
             }
         }
-    }*/
+    }
 
 
-    public void mostrarNodos() {
+   /* public void mostrarNodos() {
         Fila fila = new Fila(); // Suponha que esta fila seja segura e não altere a árvore
         No marcador = new No(); // Marcador de fim de nível
         fila.inserir(raiz.getCabeca());
@@ -177,7 +177,7 @@ public class ArvorePatricia {
                 }
             }
         }
-    }
+    }*/
 
 
 
