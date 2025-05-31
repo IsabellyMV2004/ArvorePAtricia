@@ -5,7 +5,7 @@ public class ArvorePatricia {
         raiz = new No();
     }
 
-    public String separarPalavrasIguais(String info, String palavra){
+    public String separarParteIgual(String info, String palavra){
         String p;
         int i=0;
         p = "" + info.charAt(0);
@@ -16,7 +16,7 @@ public class ArvorePatricia {
         }
         return p;
     }
-    public String separarPalavraDiferentes(String info, String palavra){
+    public String separarParteDiferente(String info, String palavra){
         String p;
         int i=0;
         p = "" + info.charAt(0);
@@ -82,17 +82,18 @@ public class ArvorePatricia {
                     ant.setCauda(novo);
                 else
                 {
-                    if(aux.getPalavra().equals(info))
+                    if(aux.getPalavra().equals(info)) // a palavra de aux é igual a info
                         aux.setFlag(true);
                     else {
                         tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
                         if (tamanho == info.length()) {
-                            diferente1 = separarPalavraDiferentes(info,aux.getPalavra());
+                            diferente1 = separarParteDiferente(info,aux.getPalavra());
+                            ant = aux.getCabeca();
+                            aux.setCabeca(new No(diferente1,true,ant,null));
                             aux.setPalavra(info);
-                            inserir(diferente1,aux);
                         } else{
                             if(tamanho == aux.getPalavra().length()){
-                                diferente1 = separarPalavraDiferentes(aux.getPalavra(),info);
+                                diferente1 = separarParteDiferente(aux.getPalavra(),info);
                                 inserir(diferente1,aux);
                             }
                             else{
