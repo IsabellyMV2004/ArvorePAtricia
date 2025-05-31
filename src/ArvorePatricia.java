@@ -84,39 +84,19 @@ public class ArvorePatricia {
                 {
                     if(aux.getPalavra().equals(info))
                         aux.setFlag(true);
-                    else{
+                    else {
+                        tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
+                        if (tamanho == info.length()) {  // se for do tamanho do info quer dizer vai ter que dividir a palavra em dois
 
-                    }
-                    if (aux.getPalavra().charAt(0) > info.charAt(0)) // primeira letra não foi encontrada na posição que deveria estar, deve ser adicionada na posição correta
-                    {
-                        if (ant == null) // significa que deve ser inserida como a letra da primeira posição da raiz
-                        {
-                            novo.setCauda(raiz.getCabeca());
-                            raiz.setCabeca(novo);
-                        }
-                        else
-                        {
-                            novo.setCauda(aux);
-                            ant.setCauda(novo);
-                        }
-                    }
-                    else
-                    { // encontrou a primeira letra
-                       tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-                       if(tamanho == info.length()){  // se for do tamanho do info quer dizer vai ter que dividir a palavra em dois
-                           aux.setPalavra(separarPalavraDiferentes(info, aux.getPalavra()));
-                           novo = new No(info,true,aux,aux.getCauda());
-                           ant.setCauda(novo);
-                       }
-                       else if(tamanho < info.length()){ // se o tamanho for menor quer o info que dizer que é o info que tem valores a mais que devem ser divididos
-                            if(aux.getCabeca()==null) // o no não possui ramificações abaixo dele
-                                aux.setCabeca(new No(separarPalavraDiferentes(info, aux.getPalavra()), true, null, null));
-                            else{ // o no possui ramificações abaixo dele
-                                    inserir(separarPalavraDiferentes(info,aux.getPalavra()),aux);
+                        } else{ // se o tamanho for menor quer o info que dizer que é o info que tem valores a mais que devem ser divididos
+                            if(tamanho == aux.getPalavra().length()){
+
                             }
-                       }
+                            else{
+
+                            }
+                        }
                     }
-                }
             }
         }
     }
