@@ -63,25 +63,26 @@ public class ArvorePatricia {
                         aux.setFlag(true);
                     else {
                         tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-                        if (tamanho == info.length()) {
-                            diferente = separarParteDiferente(info,aux.getPalavra());
+                        if (tamanho == info.length()) { // a palavra de aux contem info dentro dela
+                            diferente = separarParteDiferente(info,aux.getPalavra()); //retira a parte de aux que info não possui
                             ant = aux.getCabeca();
-                            aux.setCabeca(new No(diferente,true,ant,null));
-                            aux.setPalavra(info);
+                            aux.setCabeca(new No(diferente,true,ant,null)); // adiciona essa parte diferente na cabeça de aux
+                            aux.setPalavra(info); // muda a palvra de aux para info
                         } else{
-                            if(tamanho == aux.getPalavra().length()){
-                                diferente = separarParteDiferente(aux.getPalavra(),info);
+                            if(tamanho == aux.getPalavra().length()){ // info contem a palavra de aux dentro dele
+                                diferente = separarParteDiferente(aux.getPalavra(),info); // retira a parte de info que aux não possui e insere na posição correta
                                 inserir(diferente,aux);
                             }
-                            else{
-                                diferente = separarParteDiferente(info,aux.getPalavra());
-                                igual = separarParteIgual(info,aux.getPalavra());
+                            else{ // info conte parte que aux não possuie e vice-versa
+                                diferente = separarParteDiferente(info,aux.getPalavra());  // separa a parte diferente da palavra de aux
+                                igual = separarParteIgual(info,aux.getPalavra()); // separa a parte que é igual tanto para info quanto para a palvra de aux
 
                                 ant = aux.getCabeca();
-                                aux.setCabeca(new No(diferente,true,ant,null));
-                                diferente = separarParteDiferente(aux.getPalavra(),info);
-                                aux.setPalavra(igual);
-                                inserir(diferente,aux);
+                                aux.setCabeca(new No(diferente,true,ant,null)); // adiciona essa parte diferente na cabeça de aux
+                                diferente = separarParteDiferente(aux.getPalavra(),info); // retira a parte de info que aux não possui
+                                aux.setPalavra(igual); // muda a palvra para a parte que ambos possuem
+                                aux.setFlag(false);
+                                inserir(diferente,aux); // insere a parte que info possui mas aux não
                             }
                         }
                     }
