@@ -95,20 +95,48 @@ public class ArvorePatricia {
         }
     }
 
+    public int nivelMaximo(){
+        No aux = raiz;
+        int i= 0;
+        while (aux != null){
+            i++;
+            aux = aux.getCabeca();
+        }
+        return i;
+    }
+
     public void mostrarNodos(){
         Fila fila = new Fila();
         No aux;
-        int i = 0;
+        int i = 0,nivel = nivelMaximo()+1;
         fila.inserir(raiz.getCabeca());
-        aux = raiz.getCabeca();
+        for (int j = 0; j <= nivel; j++) {
+            System.out.printf("\t");
+        }
+        System.out.println("raiz");
+        for (int j = 0; j <= nivel; j++) {
+            System.out.printf("\t");
+        }
+        System.out.println("|   |");
         while (!fila.filaVazia()){
+            aux = fila.retirar();
             while (aux!=null){
                 fila.inserir(aux);
+                for (int j = 0; j <= nivel; j++) {
+                    System.out.printf("\t");
+                }
+                System.out.printf(aux.getPalavra());
+                for (int j = 0; j <= nivel; j++) {
+                    System.out.printf("\t");
+                }
                 aux = aux.getCauda();
-            }
-            i++;
-            aux = fila.retirar();
+                if(aux == null){
+                    aux = fila.retirar();
 
+                    aux = aux.getCabeca();
+                    System.out.println();
+                }
+            }
         }
     }
 
