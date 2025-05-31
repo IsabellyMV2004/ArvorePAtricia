@@ -7,11 +7,11 @@ public class Fila {
         dados = null;
     }
 
-    public boolean FilaVazia(){
+    public boolean filaVazia(){
         return fim == 0;
     }
 
-    public  void Inserir(No elemento){
+    public  void inserir(No elemento){
         No aux = dados;
         for (int i = 0; i < fim; i++) {
             aux = aux.getCauda();
@@ -19,17 +19,17 @@ public class Fila {
         aux.setCauda(elemento);
     }
 
-    public No Retirar(){
+    public No retirar(){
         No aux = dados;
         dados = dados.getCauda();
         return aux;
     }
 
-    public String ElementoInicio(){
+    public String elementoInicio(){
         return dados.getPalavra();
     }
 
-    public String ElementoFim(){
+    public String elementoFim(){
         No aux = dados;
         for (int i = 0; i < fim; i++) {
             aux = aux.getCauda();

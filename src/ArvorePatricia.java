@@ -33,7 +33,7 @@ public class ArvorePatricia {
     public void inserir(String info, No raiz){
         No novo, aux, ant;
         String igual, diferente;
-        int i=0, tamanho;
+        int tamanho;
 
         novo = new No(info,true,null,null);
         if(raiz.getCabeca()==null) // raiz esta vazia
@@ -66,7 +66,9 @@ public class ArvorePatricia {
                         if (tamanho == info.length()) { // a palavra de aux contem info dentro dela
                             diferente = separarParteDiferente(info,aux.getPalavra()); //retira a parte de aux que info não possui
                             ant = aux.getCabeca();
-                            aux.setCabeca(new No(diferente,true,ant,null)); // adiciona essa parte diferente na cabeça de aux
+                            novo.setPalavra(diferente);
+                            novo.setCabeca(ant);
+                            aux.setCabeca(novo); // adiciona essa parte diferente na cabeça de aux
                             aux.setPalavra(info); // muda a palvra de aux para info
                         } else{
                             if(tamanho == aux.getPalavra().length()){ // info contem a palavra de aux dentro dele
@@ -78,7 +80,9 @@ public class ArvorePatricia {
                                 igual = separarParteIgual(info,aux.getPalavra()); // separa a parte que é igual tanto para info quanto para a palvra de aux
 
                                 ant = aux.getCabeca();
-                                aux.setCabeca(new No(diferente,true,ant,null)); // adiciona essa parte diferente na cabeça de aux
+                                novo.setPalavra(diferente);
+                                novo.setCabeca(ant);
+                                aux.setCabeca(novo); // adiciona essa parte diferente na cabeça de aux
                                 diferente = separarParteDiferente(aux.getPalavra(),info); // retira a parte de info que aux não possui
                                 aux.setPalavra(igual); // muda a palvra para a parte que ambos possuem
                                 aux.setFlag(false);
@@ -92,7 +96,20 @@ public class ArvorePatricia {
     }
 
     public void mostrarNodos(){
+        Fila fila = new Fila();
+        No aux;
+        int i = 0;
+        fila.inserir(raiz.getCabeca());
+        aux = raiz.getCabeca();
+        while (!fila.filaVazia()){
+            while (aux!=null){
+                fila.inserir(aux);
+                aux = aux.getCauda();
+            }
+            i++;
+            aux = fila.retirar();
 
+        }
     }
 
     public void exibirPalavras(){
