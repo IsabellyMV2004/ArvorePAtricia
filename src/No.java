@@ -20,7 +20,6 @@ public class No {
         int i=0;
         while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
             i++;
-        System.out.println("AAAAAAAAAAA");
         return i;
     }
 
@@ -34,7 +33,7 @@ public class No {
         this.palavra = palavra;
     }
 
-    public boolean isFlag() {
+    public boolean getFlag() {
         return flag;
     }
 

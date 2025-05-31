@@ -11,7 +11,7 @@ public class ArvorePatricia {
         while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
         {
             p = p+info.charAt(i);
-            System.out.println("separarParteIgual = "+p);
+           // System.out.println("separarParteIgual = "+p);
             i++;
         }
         return p;
@@ -24,34 +24,34 @@ public class ArvorePatricia {
             i++;
         while (i<palavra.length()) {
             p = p+palavra.charAt(i);
-            System.out.println("separarParteDiferente = "+p);
+           // System.out.println("separarParteDiferente = "+p);
             i++;
         }
         return p;
     }
 
-    public void inserir(String info, No raiz){
+    public void inserir(String info, No r){
         No novo, aux, ant;
         String igual, diferente;
         int tamanho;
-        System.out.println(info);
+        //System.out.println(info);
 
         novo = new No(info,true,null,null);
-        if(raiz.getCabeca()==null)// raiz esta vazia
-            raiz.setCabeca(novo);
+        if(r.getCabeca()==null)// raiz esta vazia
+            r.setCabeca(novo);
         else
         {
-            System.out.println("CCCCCCCC");
-            if(raiz.getCabeca().getPalavra().charAt(0)>info.charAt(0))  // primeira letra da raiz vem depois da letra de info
+            //System.out.println("CCCCCCCC");
+            if(r.getCabeca().getPalavra().charAt(0)>info.charAt(0))  // primeira letra da raiz vem depois da letra de info
             {
-                System.out.println("FFFFFFF");
-                novo.setCauda(raiz.getCauda());
-                raiz.setCabeca(novo);
+                //System.out.println("FFFFFFF");
+                novo.setCauda(r.getCabeca());
+                r.setCabeca(novo);
             }
             else
             {
-                System.out.println("lllllll");
-                aux = raiz.getCabeca();
+               // System.out.println("lllllll");
+                aux = r.getCabeca();
                 ant = null;
                 while (aux != null && aux.getPalavra().charAt(0) < info.charAt(0)) //buscar pela primeira letra da info na arvore
                 {
@@ -62,10 +62,10 @@ public class ArvorePatricia {
                 if (aux == null)// primeira letra não foi encontrada, se não tem a letra logo não tem a palavra, tem que inserir
                     ant.setCauda(novo);
                 else
-                {System.out.println("palavra aux ="+aux.getPalavra());
+                {//System.out.println("palavra aux ="+aux.getPalavra());
                     if(aux.getPalavra().charAt(0) > info.charAt(0))
                     {
-                        System.out.println("d");
+                        //System.out.println("d");
                         novo.setCauda(aux);
                         ant.setCauda(novo);
                     }
@@ -73,7 +73,7 @@ public class ArvorePatricia {
                         if(aux.getPalavra().equals(info)) // a palavra de aux é igual a info
                             aux.setFlag(true);
                         else {
-                            System.out.println("BBBBBBBBBBBBBBB");
+                            //System.out.println("BBBBBBBBBBBBBBB");
                             tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
                             if (tamanho == info.length()) { // a palavra de aux contem info dentro dela
 
@@ -86,13 +86,13 @@ public class ArvorePatricia {
                             } else{
                                 if(tamanho == aux.getPalavra().length()){ // info contem a palavra de aux dentro dele
                                     diferente = separarParteDiferente(aux.getPalavra(),info); // retira a parte de info que aux não possui e insere na posição correta
-                                    System.out.println("diferente = "+diferente+" aux ="+aux.getPalavra());
+                                    //System.out.println("diferente = "+diferente+" aux ="+aux.getPalavra());
                                     inserir(diferente,aux);
                                 }
                                 else{ // info conte parte que aux não possuie e vice-versa
                                     diferente = separarParteDiferente(info,aux.getPalavra());  // separa a parte diferente da palavra de aux
                                     igual = separarParteIgual(info,aux.getPalavra()); // separa a parte que é igual tanto para info quanto para a palvra de aux
-                                    System.out.println("\n\ndiferente = "+diferente+" igual ="+igual);
+                                    //System.out.println("\n\ndiferente = "+diferente+" igual ="+igual);
                                     ant = aux.getCabeca();
                                     novo.setPalavra(diferente);
                                     novo.setCabeca(ant);
@@ -120,7 +120,7 @@ public class ArvorePatricia {
         return i;
     }
 
-    public void mostrarNodos(){
+    /*public void mostrarNodos(){
         Fila fila = new Fila();
         No aux;
         int nivel = nivelMaximo()+1;
@@ -145,7 +145,40 @@ public class ArvorePatricia {
                 }
             }
         }
+    }*/
+
+
+    public void mostrarNodos() {
+        Fila fila = new Fila(); // Suponha que esta fila seja segura e não altere a árvore
+        No marcador = new No(); // Marcador de fim de nível
+        fila.inserir(raiz.getCabeca());
+        fila.inserir(marcador);
+
+        while (!fila.filaVazia()) {
+            No atual = fila.retirar();
+
+            if (atual == marcador) {
+                System.out.println(); // Fim de um nível
+                if (!fila.filaVazia()) {
+                    fila.inserir(marcador); // Marca novo fim de nível
+                }
+                continue;
+            }
+
+            // Imprime o nó atual
+            if (atual != null) {
+                System.out.print("[" + atual.getPalavra() + (atual.getFlag() ? "*" : "") + "] ");
+
+                // Insere os filhos (cabeça e cauda) na fila
+                No filho = atual.getCabeca();
+                while (filho != null) {
+                    fila.inserir(filho);
+                    filho = filho.getCauda();
+                }
+            }
+        }
     }
+
 
 
     public void mostrar(){

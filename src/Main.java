@@ -7,7 +7,10 @@ public class Main {
 
       for (int i = 64; i >= 0; i--) {
          arvore.inserir(palavras[i], arvore.raiz);
-         //arvore.mostrarNodos();
+         System.out.printf("\n\npalavra = "+palavras[i]);
+         System.out.println("\n11111111111111111111");
+         arvore.mostrarNodos();
+         System.out.println("\n\n222222222222222222222");
          arvore.mostrar();
       }
 
