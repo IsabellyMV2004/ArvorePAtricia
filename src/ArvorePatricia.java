@@ -16,6 +16,7 @@ public class ArvorePatricia {
         }
         return p;
     }
+
     public String separarParteDiferente(String info, String palavra){
         String p;
         int i=0;
@@ -28,30 +29,6 @@ public class ArvorePatricia {
         }
         return p;
     }
-
-    public void dividir(String info, No raiz){
-        No novo, aux, ant;
-        int i=0, tamanho;
-
-        aux = raiz.getCabeca();
-        tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-        if(tamanho < info.length()){
-            if(tamanho == aux.getPalavra().length()){
-                if(aux.getCabeca() == null){
-
-                }
-            }
-            else{
-
-            }
-
-        }
-        else{
-
-        }
-
-    }
-
 
     public void inserir(String info, No raiz){
         No novo, aux, ant;
