@@ -1,27 +1,5 @@
 public class ArvorePatricia {
 
-    // Reset
-    public static final String RESET = "\u001B[0m";
-
-    public static final String[] CORES = {
-            "\u001B[31m",  // 0 - Vermelho
-            "\u001B[32m",  // 1 - Verde
-            "\u001B[33m",  // 2 - Amarelo
-            "\u001B[34m",  // 3 - Azul
-            "\u001B[35m",  // 4 - Roxo
-            "\u001B[36m",  // 5 - Ciano
-            "\u001B[37m",  // 6 - Branco
-
-            "\u001B[90m",  // 7 - Preto brilhante (cinza)
-            "\u001B[91m",  // 8 - Vermelho brilhante
-            "\u001B[92m",  // 9 - Verde brilhante
-            "\u001B[93m",  // 10 - Amarelo brilhante
-            "\u001B[94m",  // 11 - Azul brilhante
-            "\u001B[95m",  // 12 - Roxo brilhante
-            "\u001B[96m",  // 13 - Ciano brilhante
-            "\u001B[97m"   // 14 - Branco brilhante
-    };
-
     No raiz;
 
     public ArvorePatricia(){
@@ -194,7 +172,6 @@ public class ArvorePatricia {
     public void mostrarNodos() {
         Fila nivelAtual = new Fila();   // Fila do nível atual
         Fila proximoNivel = new Fila(); // Fila do próximo nível
-        int cor;
         int numeroNivel = 0;
 
         // Imprime a raiz
@@ -204,33 +181,30 @@ public class ArvorePatricia {
         numeroNivel++;
 
         if (raiz.getCabeca() != null)
-            nivelAtual.inserir(raiz.getCabeca(), 0);
+            nivelAtual.inserir(raiz.getCabeca());
 
         while (!nivelAtual.filaVazia()) {
             // Imprime os nós deste nível
             Fila linha = new Fila();
 
             while (!nivelAtual.filaVazia()) {
-                cor = nivelAtual.cor();
                 No no = nivelAtual.retirar();
 
                 while (no != null) {
-                    linha.inserir(no, cor);
+                    linha.inserir(no);
 
                     if (no.getCabeca() != null)
-                        proximoNivel.inserir(no.getCabeca(), cor);
+                        proximoNivel.inserir(no.getCabeca());
 
                     no = no.getCauda();
-                    cor = (cor == 14) ? 0 : cor + 1;
                 }
             }
 
             // Imprime a linha com o número do nível
             System.out.print("Nivel " + numeroNivel + ":");
             while (!linha.filaVazia()) {
-                cor = linha.cor();
                 No no = linha.retirar();
-                System.out.print("\t" + CORES[cor] + no.getPalavra() + RESET);
+                System.out.print("\t" + no.getPalavra());
             }
             System.out.println();
             numeroNivel++;

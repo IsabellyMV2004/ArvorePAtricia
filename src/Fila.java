@@ -9,8 +9,8 @@ public class Fila {
         return inicio == null;
     }
 
-    public void inserir(No elemento, int cor) {
-        NoFila novo = new NoFila(elemento, cor);
+    public void inserir(No elemento) {
+        NoFila novo = new NoFila(elemento);
         if (filaVazia()) {
             inicio = fim = novo;
         } else {
@@ -27,14 +27,5 @@ public class Fila {
         if (inicio == null)
             fim = null;
         return dado;
-    }
-
-    public  int cor(){
-        return inicio.getCor();
-    }
-
-
-    public String topo(){
-        return inicio.getDado().getPalavra();
     }
 }
