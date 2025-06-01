@@ -62,10 +62,10 @@ public class Main {
       palavras[43] = "perfeicao";
       palavras[44] = "cor";
       palavras[45] = "de";
-      palavras[46] = "oftalmotorrinolaringologista";
-      palavras[47] = "piperidinoetoxicarbometoxibenzofenona";
-      palavras[48] = "paraclorobenzilpirrolidinonetilbenzimidazol";
-      palavras[49] = "pneumoultramicroscopicossilicovulcanoconiotico";
+      palavras[46] = "quadrado";
+      palavras[47] = "queijo";
+      palavras[48] = "idade";
+      palavras[49] = "gambiarra";
       palavras[50] = "cachimbo";
       palavras[51] = "dinossauro";
       palavras[52] = "eleitor";

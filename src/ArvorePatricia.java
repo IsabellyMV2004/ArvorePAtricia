@@ -1,4 +1,27 @@
 public class ArvorePatricia {
+
+    // Reset
+    public static final String RESET = "\u001B[0m";
+
+    public static final String[] CORES = {
+            "\u001B[31m",  // 0 - Vermelho
+            "\u001B[32m",  // 1 - Verde
+            "\u001B[33m",  // 2 - Amarelo
+            "\u001B[34m",  // 3 - Azul
+            "\u001B[35m",  // 4 - Roxo
+            "\u001B[36m",  // 5 - Ciano
+            "\u001B[37m",  // 6 - Branco
+
+            "\u001B[90m",  // 7 - Preto brilhante (cinza)
+            "\u001B[91m",  // 8 - Vermelho brilhante
+            "\u001B[92m",  // 9 - Verde brilhante
+            "\u001B[93m",  // 10 - Amarelo brilhante
+            "\u001B[94m",  // 11 - Azul brilhante
+            "\u001B[95m",  // 12 - Roxo brilhante
+            "\u001B[96m",  // 13 - Ciano brilhante
+            "\u001B[97m"   // 14 - Branco brilhante
+    };
+
     No raiz;
 
     public ArvorePatricia(){
@@ -205,7 +228,8 @@ public class ArvorePatricia {
         Fila pai = new Fila();
         Fila filho = new Fila();
         No aux, quantFilhos;
-        int nivel = nivelMaximo()+1;
+        int nivel = nivelMaximo()+1, cor=0;
+        boolean flag = false;
         for (int j = 0; j <= nivel; j++) {
             System.out.printf("\t");
         }
@@ -215,8 +239,9 @@ public class ArvorePatricia {
         }
         System.out.println();
 
-        pai.inserir(raiz.getCabeca());
+        pai.inserir(raiz.getCabeca(),cor);
         while (!pai.filaVazia()){
+            cor = pai.cor();
             aux = pai.retirar();
             if(aux.getPalavra().equals(" "))
                 System.out.println();
@@ -224,26 +249,32 @@ public class ArvorePatricia {
                 for (int j = 0; j <= nivel; j++) {
                     System.out.printf("\t");
                 }
-                System.out.printf(aux.getPalavra());
+                System.out.printf(CORES[cor]+aux.getPalavra());
 
                 if(aux.getCabeca()!=null) {
-                   /// quantFilhos = quantidadeFilhos(aux);
-                    for (int j = 0; j <= nivel; j++) {
-                        System.out.printf("\t");
-                    }
-                    filho.inserir(aux.getCabeca());
+                    filho.inserir(aux.getCabeca(),cor);
+                    filho.inserir(new No(" ",true,null,null),cor);
                 }
 
-                if(aux.getCauda()!=null)
-                    pai.inserir(aux.getCauda());
-            }
-            if(pai.filaVazia() && !filho.filaVazia()){
-                    pai.inserir(filho.retirar());
-                    filho.inserir(new No(" ",true,null,null));
-                System.out.println();
+                if(aux.getCauda()!=null) {
+                    if(!flag)
+                        if (cor == 14)
+                            pai.inserir(aux.getCauda(), 0);
+                        else
+                            pai.inserir(aux.getCauda(), cor + 1);
+                    else
+                        pai.inserir(aux.getCauda(), cor);
+                }
 
             }
+            if(pai.filaVazia() && !filho.filaVazia()){
+                cor = filho.cor();
+                pai.inserir(filho.retirar(),cor);
+                System.out.println();
+                flag = true;
+            }
         }
+        System.out.println(RESET);
     }
 
 

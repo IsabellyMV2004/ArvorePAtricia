@@ -9,8 +9,8 @@ public class Fila {
         return inicio == null;
     }
 
-    public void inserir(No elemento) {
-        NoFila novo = new NoFila(elemento);
+    public void inserir(No elemento, int cor) {
+        NoFila novo = new NoFila(elemento, cor);
         if (filaVazia()) {
             inicio = fim = novo;
         } else {
@@ -20,10 +20,16 @@ public class Fila {
     }
 
     public No retirar() {
-        if (filaVazia()) return null;
+        if (filaVazia())
+            return null;
         No dado = inicio.getDado();
         inicio = inicio.getProximo();
-        if (inicio == null) fim = null;
+        if (inicio == null)
+            fim = null;
         return dado;
+    }
+
+    public  int cor(){
+        return inicio.getCor();
     }
 }
