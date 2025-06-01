@@ -204,7 +204,7 @@ public class ArvorePatricia {
     public void mostrarNodos(){
         Fila pai = new Fila();
         Fila filho = new Fila();
-        No aux, prox;
+        No aux, quantFilhos;
         int nivel = nivelMaximo()+1;
         for (int j = 0; j <= nivel; j++) {
             System.out.printf("\t");
@@ -218,33 +218,33 @@ public class ArvorePatricia {
         pai.inserir(raiz.getCabeca());
         while (!pai.filaVazia()){
             aux = pai.retirar();
-
-            for (int j = 0; j <= nivel; j++) {
-                System.out.printf("\t");
-            }
-            System.out.printf(aux.getPalavra());
-            for (int j = 0; j <= nivel; j++) {
-                System.out.printf("\t");
-            }
-
-            prox = aux.getCabeca();
-            while(prox!=null) {
-                filho.inserir(prox);
-                prox = prox.getCauda();
-            }
-
-            if(aux.getCauda()!=null)
-                pai.inserir(aux.getCauda());
-
-            if(pai.filaVazia()){
-                while(!filho.filaVazia())
-                    pai.inserir(filho.retirar());
+            if(aux.getPalavra().equals(" "))
                 System.out.println();
+            else{
+                for (int j = 0; j <= nivel; j++) {
+                    System.out.printf("\t");
+                }
+                System.out.printf(aux.getPalavra());
+
+                if(aux.getCabeca()!=null) {
+                   /// quantFilhos = quantidadeFilhos(aux);
+                    for (int j = 0; j <= nivel; j++) {
+                        System.out.printf("\t");
+                    }
+                    filho.inserir(aux.getCabeca());
+                }
+
+                if(aux.getCauda()!=null)
+                    pai.inserir(aux.getCauda());
+            }
+            if(pai.filaVazia() && !filho.filaVazia()){
+                    pai.inserir(filho.retirar());
+                    filho.inserir(new No(" ",true,null,null));
+                System.out.println();
+
             }
         }
     }
-
-
 
 
     /*public void exibirPalavras(){
