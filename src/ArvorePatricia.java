@@ -111,80 +111,20 @@ public class ArvorePatricia {
         return i;
     }
 
-    /*public void mostrarNodos(){
-        Fila pai = new Fila();
-        Fila filho = new Fila();
-        No aux, quantFilhos;
-        int nivel = nivelMaximo()+1, cor=0;
-        boolean flag = false;
-        for (int j = 0; j <= nivel; j++) {
-            System.out.printf("\t");
-        }
-        System.out.printf("●");
-        for (int j = 0; j <= nivel; j++) {
-            System.out.printf("\t");
-        }
-        System.out.println();
-
-        pai.inserir(raiz.getCabeca(),cor);
-        while (!pai.filaVazia()){
-            cor = pai.cor();
-            aux = pai.retirar();
-          //  if(aux.getPalavra().equals(" "))
-          //      System.out.println();
-           // else{
-                for (int j = 0; j <= nivel; j++) {
-                    System.out.printf("\t");
-                }
-                System.out.printf(CORES[cor]+aux.getPalavra());
-
-                if(aux.getCabeca()!=null) {
-                    for (int j = 0; j <= nivel; j++) {
-                        System.out.printf("\t");
-                    }
-                    filho.inserir(aux.getCabeca(),cor);
-                }
-
-                if(aux.getCauda()!=null) {
-                    if(!flag)
-                        if (cor == 14)
-                            pai.inserir(aux.getCauda(), 0);
-                        else
-                            pai.inserir(aux.getCauda(), cor + 1);
-                    else
-                        pai.inserir(aux.getCauda(), cor);
-                }
-
-           // }
-            if(pai.filaVazia() && !filho.filaVazia()){
-                cor = filho.cor();
-                pai.inserir(filho.retirar(),cor);
-                if(!filho.filaVazia() && !filho.topo().equals("\n"))
-                    filho.inserir(new No("\n",true,null,null),cor);
-                System.out.println();
-                flag = true;
-            }
-        }
-        System.out.println(RESET);
-    }*/
-
-
     public void mostrarNodos() {
-        Fila nivelAtual = new Fila();   // Fila do nível atual
-        Fila proximoNivel = new Fila(); // Fila do próximo nível
+        Fila nivelAtual = new Fila();
+        Fila proximoNivel = new Fila();
         int numeroNivel = 0;
 
         // Imprime a raiz
-        int nivel = nivelMaximo() + 1;
-        for (int j = 0; j <= nivel; j++) System.out.print("\t");
-        System.out.println("Nivel " + numeroNivel + ": ●");
+        System.out.println("Nivel " + numeroNivel + ":\t●");
         numeroNivel++;
 
         if (raiz.getCabeca() != null)
             nivelAtual.inserir(raiz.getCabeca());
 
         while (!nivelAtual.filaVazia()) {
-            // Imprime os nós deste nível
+            // Imprime os nós desse nível
             Fila linha = new Fila();
 
             while (!nivelAtual.filaVazia()) {
@@ -209,7 +149,7 @@ public class ArvorePatricia {
             System.out.println();
             numeroNivel++;
 
-            // Avança para o próximo nível
+            // Passa para o próximo nível
             nivelAtual = proximoNivel;
             proximoNivel = new Fila();
         }
