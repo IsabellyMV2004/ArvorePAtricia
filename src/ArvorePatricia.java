@@ -133,97 +133,6 @@ public class ArvorePatricia {
         return i;
     }
 
-  /*  public void mostrarNodos(){
-        Fila fila = new Fila();
-        No aux;
-        int nivel = nivelMaximo()+1;
-        fila.inserir(raiz.getCabeca());
-        while (!fila.filaVazia()){
-            aux = fila.retirar();
-            while (aux!=null){
-                fila.inserir(aux);
-                for (int j = 0; j <= nivel; j++) {
-                    System.out.printf("\t");
-                }
-                System.out.printf(aux.getPalavra());
-                for (int j = 0; j <= nivel; j++) {
-                    System.out.printf("\t");
-                }
-                aux = aux.getCauda();
-                if(aux == null){
-                        aux = fila.retirar();
-                        while(aux.getCabeca() == null)
-                            aux = fila.retirar();
-                        aux = aux.getCabeca();
-                        System.out.println();
-                }
-            }
-        }
-    }*/
-
-    /*public void mostrarNodos() {
-        if (raiz.getCabeca() == null) {
-            System.out.println("(vazia)");
-            return;
-        }
-
-        Fila fila = new Fila();
-        fila.inserir(raiz.getCabeca());
-
-        int nivel = 0;
-        int numElementosNoNivel = 1;
-
-        System.out.println("               ●");
-
-        while (!fila.filaVazia()) {
-            int proximoNivel = 0;
-            StringBuilder nivelAtual = new StringBuilder();
-            StringBuilder conectores = new StringBuilder();
-
-            for (int i = 0; i < numElementosNoNivel; i++) {
-                No atual = fila.retirar();
-                if (atual == null) {
-                    nivelAtual.append("   ");
-                    continue;
-                }
-
-                nivelAtual.append(espaco(3 - atual.getPalavra().length() / 2))
-                        .append(atual.getPalavra())
-                        .append(espaco(3 - atual.getPalavra().length() / 2));
-
-                // Enfileira os filhos (cauda e cabeça)
-                No filho = atual.getCabeca();
-                while (filho != null) {
-                    fila.inserir(filho);
-                    proximoNivel++;
-                    filho = filho.getCauda();
-                }
-
-                // Se não tem filhos, ainda enfileira null para manter o nível alinhado
-                if (atual.getCabeca() == null) {
-                    fila.inserir(null);
-                    proximoNivel++;
-                }
-            }
-
-            System.out.println(nivelAtual.toString());
-            numElementosNoNivel = proximoNivel;
-            nivel++;
-        }
-    }
-
-    private String espaco(int n) {
-        return " ".repeat(Math.max(0, n));
-    }*/
-
-    public void mostrar(){
-        No aux = raiz.getCabeca();
-        while (aux!=null){
-            System.out.printf(aux.getPalavra()+ "\t");
-            aux = aux.getCauda();
-        }
-    }
-
     public void mostrarNodos(){
         Fila pai = new Fila();
         Fila filho = new Fila();
@@ -243,9 +152,9 @@ public class ArvorePatricia {
         while (!pai.filaVazia()){
             cor = pai.cor();
             aux = pai.retirar();
-            if(aux.getPalavra().equals(" "))
-                System.out.println();
-            else{
+          //  if(aux.getPalavra().equals(" "))
+          //      System.out.println();
+           // else{
                 for (int j = 0; j <= nivel; j++) {
                     System.out.printf("\t");
                 }
@@ -253,7 +162,7 @@ public class ArvorePatricia {
 
                 if(aux.getCabeca()!=null) {
                     filho.inserir(aux.getCabeca(),cor);
-                    filho.inserir(new No(" ",true,null,null),cor);
+
                 }
 
                 if(aux.getCauda()!=null) {
@@ -266,10 +175,12 @@ public class ArvorePatricia {
                         pai.inserir(aux.getCauda(), cor);
                 }
 
-            }
+           // }
             if(pai.filaVazia() && !filho.filaVazia()){
                 cor = filho.cor();
                 pai.inserir(filho.retirar(),cor);
+                if(!filho.filaVazia())
+                    filho.inserir(new No("\n",true,null,null),cor);
                 System.out.println();
                 flag = true;
             }

@@ -32,4 +32,9 @@ public class Fila {
     public  int cor(){
         return inicio.getCor();
     }
+
+
+    public String topo(){
+        return inicio.getDado().getPalavra();
+    }
 }
