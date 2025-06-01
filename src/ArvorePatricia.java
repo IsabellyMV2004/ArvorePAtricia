@@ -138,7 +138,7 @@ public class ArvorePatricia {
         }
     }*/
 
-    public void mostrarNodos() {
+    /*public void mostrarNodos() {
         if (raiz.getCabeca() == null) {
             System.out.println("(vazia)");
             return;
@@ -191,7 +191,7 @@ public class ArvorePatricia {
 
     private String espaco(int n) {
         return " ".repeat(Math.max(0, n));
-    }
+    }*/
 
     public void mostrar(){
         No aux = raiz.getCabeca();
@@ -200,6 +200,52 @@ public class ArvorePatricia {
             aux = aux.getCauda();
         }
     }
+
+    public void mostrarNodos(){
+        Fila pai = new Fila();
+        Fila filho = new Fila();
+        No aux, prox;
+        int nivel = nivelMaximo()+1;
+        for (int j = 0; j <= nivel; j++) {
+            System.out.printf("\t");
+        }
+        System.out.printf("●");
+        for (int j = 0; j <= nivel; j++) {
+            System.out.printf("\t");
+        }
+        System.out.println();
+
+        pai.inserir(raiz.getCabeca());
+        while (!pai.filaVazia()){
+            aux = pai.retirar();
+
+            for (int j = 0; j <= nivel; j++) {
+                System.out.printf("\t");
+            }
+            System.out.printf(aux.getPalavra());
+            for (int j = 0; j <= nivel; j++) {
+                System.out.printf("\t");
+            }
+
+            prox = aux.getCabeca();
+            while(prox!=null) {
+                filho.inserir(prox);
+                prox = prox.getCauda();
+            }
+
+            if(aux.getCauda()!=null)
+                pai.inserir(aux.getCauda());
+
+            if(pai.filaVazia()){
+                while(!filho.filaVazia())
+                    pai.inserir(filho.retirar());
+                System.out.println();
+            }
+        }
+    }
+
+
+
 
     /*public void exibirPalavras(){
         No aux = null;
