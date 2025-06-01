@@ -133,7 +133,7 @@ public class ArvorePatricia {
         return i;
     }
 
-    public void mostrarNodos(){
+    /*public void mostrarNodos(){
         Fila pai = new Fila();
         Fila filho = new Fila();
         No aux, quantFilhos;
@@ -161,8 +161,10 @@ public class ArvorePatricia {
                 System.out.printf(CORES[cor]+aux.getPalavra());
 
                 if(aux.getCabeca()!=null) {
+                    for (int j = 0; j <= nivel; j++) {
+                        System.out.printf("\t");
+                    }
                     filho.inserir(aux.getCabeca(),cor);
-
                 }
 
                 if(aux.getCauda()!=null) {
@@ -179,13 +181,64 @@ public class ArvorePatricia {
             if(pai.filaVazia() && !filho.filaVazia()){
                 cor = filho.cor();
                 pai.inserir(filho.retirar(),cor);
-                if(!filho.filaVazia())
+                if(!filho.filaVazia() && !filho.topo().equals("\n"))
                     filho.inserir(new No("\n",true,null,null),cor);
                 System.out.println();
                 flag = true;
             }
         }
         System.out.println(RESET);
+    }*/
+
+
+    public void mostrarNodos() {
+        Fila nivelAtual = new Fila();  // Fila do nível atual
+        Fila proximoNivel = new Fila(); // Fila do próximo nível
+        int cor;
+
+        // Imprime a raiz
+        int nivel = nivelMaximo() + 1;
+        for (int j = 0; j <= nivel; j++) System.out.print("\t");
+        System.out.println("●");
+
+        if (raiz.getCabeca() != null)
+            nivelAtual.inserir(raiz.getCabeca(), 0);
+
+        while (!nivelAtual.filaVazia()) {
+            // Imprimir todos os nós do nível atual (percorrendo caudas)
+            Fila linha = new Fila();
+
+            while (!nivelAtual.filaVazia()) {
+                cor = nivelAtual.cor();
+                No no = nivelAtual.retirar();
+
+
+                // Percorre a cadeia de irmãos (ligação por cauda)
+                while (no != null) {
+                    linha.inserir(no, cor);
+
+                    // Se tiver filhos, adiciona na fila do próximo nível
+                    if (no.getCabeca() != null)
+                        proximoNivel.inserir(no.getCabeca(), cor);
+
+                    no = no.getCauda();  // vai para o irmão
+                    if (cor == 14) cor = 0;
+                    else cor++;
+                }
+            }
+
+            // Imprime todos os nós do nível atual em uma linha
+            while (!linha.filaVazia()) {
+                cor = linha.cor();
+                No no = linha.retirar();
+                System.out.print("\t" + CORES[cor] + no.getPalavra() + RESET);
+            }
+            System.out.println();
+
+            // Passa para o próximo nível
+            nivelAtual = proximoNivel;
+            proximoNivel = new Fila();
+        }
     }
 
 
