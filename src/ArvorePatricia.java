@@ -192,54 +192,55 @@ public class ArvorePatricia {
 
 
     public void mostrarNodos() {
-        Fila nivelAtual = new Fila();  // Fila do nível atual
+        Fila nivelAtual = new Fila();   // Fila do nível atual
         Fila proximoNivel = new Fila(); // Fila do próximo nível
         int cor;
+        int numeroNivel = 0;
 
         // Imprime a raiz
         int nivel = nivelMaximo() + 1;
         for (int j = 0; j <= nivel; j++) System.out.print("\t");
-        System.out.println("●");
+        System.out.println("Nivel " + numeroNivel + ": ●");
+        numeroNivel++;
 
         if (raiz.getCabeca() != null)
             nivelAtual.inserir(raiz.getCabeca(), 0);
 
         while (!nivelAtual.filaVazia()) {
-            // Imprimir todos os nós do nível atual (percorrendo caudas)
+            // Imprime os nós deste nível
             Fila linha = new Fila();
 
             while (!nivelAtual.filaVazia()) {
                 cor = nivelAtual.cor();
                 No no = nivelAtual.retirar();
 
-
-                // Percorre a cadeia de irmãos (ligação por cauda)
                 while (no != null) {
                     linha.inserir(no, cor);
 
-                    // Se tiver filhos, adiciona na fila do próximo nível
                     if (no.getCabeca() != null)
                         proximoNivel.inserir(no.getCabeca(), cor);
 
-                    no = no.getCauda();  // vai para o irmão
-                    if (cor == 14) cor = 0;
-                    else cor++;
+                    no = no.getCauda();
+                    cor = (cor == 14) ? 0 : cor + 1;
                 }
             }
 
-            // Imprime todos os nós do nível atual em uma linha
+            // Imprime a linha com o número do nível
+            System.out.print("Nivel " + numeroNivel + ":");
             while (!linha.filaVazia()) {
                 cor = linha.cor();
                 No no = linha.retirar();
                 System.out.print("\t" + CORES[cor] + no.getPalavra() + RESET);
             }
             System.out.println();
+            numeroNivel++;
 
-            // Passa para o próximo nível
+            // Avança para o próximo nível
             nivelAtual = proximoNivel;
             proximoNivel = new Fila();
         }
     }
+
 
 
     /*public void exibirPalavras(){
