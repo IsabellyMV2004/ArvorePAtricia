@@ -6,10 +6,25 @@ public class ArvorePatricia {
         raiz = new No();
     }
 
+    public int length(String info) {
+        int i = 0;
+        try {
+            while (true) {
+                info.charAt(i);
+                i++;
+            }
+        } catch (Exception e) {
+            return i;
+        }
+    }
+
     public String separarParteIgual(String info, String palavra){
         String p = "";
-        int i=0;
-        while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
+        int i=0, tamanhoI = length(info), tamanhoP=length(palavra);
+
+        info.length();
+
+        while (i<tamanhoI && i<tamanhoP && info.charAt(i)==palavra.charAt(i))
         {
             p = p+info.charAt(i);
             i++;
@@ -19,10 +34,10 @@ public class ArvorePatricia {
 
     public String separarParteDiferente(String info, String palavra){
         String p = "";
-        int i=0;
-        while (i<info.length() && i<palavra.length() && info.charAt(i)==palavra.charAt(i))
+        int i=0, tamanhoI = length(info), tamanhoP=length(palavra);
+        while (i<tamanhoI && i<tamanhoP && info.charAt(i)==palavra.charAt(i))
             i++;
-        while (i<palavra.length()) {
+        while (i<tamanhoP) {
             p = p+palavra.charAt(i);
             i++;
         }
@@ -68,7 +83,7 @@ public class ArvorePatricia {
                             aux.setFlag(true);
                         else {
                             tamanho = aux.getTamanhoIgualdade(info);  // verifica a quantidade de valores que são iguais
-                            if (tamanho == info.length()) { // a palavra de aux contem info dentro dela
+                            if (tamanho == length(info)) { // a palavra de aux contem info dentro dela
 
                                 diferente = separarParteDiferente(info,aux.getPalavra()); //retira a parte de aux que info não possui
                                 ant = aux.getCabeca();
@@ -77,7 +92,7 @@ public class ArvorePatricia {
                                 aux.setCabeca(novo); // adiciona essa parte diferente na cabeça de aux
                                 aux.setPalavra(info); // muda a palvra de aux para info
                             } else{
-                                if(tamanho == aux.getPalavra().length()){ // info contem a palavra de aux dentro dele
+                                if(tamanho == length(aux.getPalavra())){ // info contem a palavra de aux dentro dele
                                     diferente = separarParteDiferente(aux.getPalavra(),info); // retira a parte de info que aux não possui e insere na posição correta
                                     inserir(diferente,aux);
                                 }
