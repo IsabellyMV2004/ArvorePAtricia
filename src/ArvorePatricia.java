@@ -172,6 +172,7 @@ public class ArvorePatricia {
         Fila nivelAtual = new Fila();
         Fila palavraAtual = new Fila();
         Fila proximaPalavra = new Fila();
+        Pilha pilha;
         String palavra;
 
         aux = raiz.getCabeca();
