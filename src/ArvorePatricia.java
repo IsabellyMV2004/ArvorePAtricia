@@ -181,11 +181,10 @@ public class ArvorePatricia {
         }
         System.out.println("\n\n# # # EXIBIÇÃO DE TODAS AS PALAVRAS # # #\n");
         while(!nivelAtual.filaVazia()){
-            palavra = "";
             aux = nivelAtual.retirar();
 
             palavraAtual.inserir(aux);
-            palavra += aux.getPalavra();
+            palavra = aux.getPalavra();
             if(aux.getFlag())
                 System.out.println(palavra);
             aux = aux.getCabeca();
@@ -196,7 +195,7 @@ public class ArvorePatricia {
                     palavraAtual.inserir(aux);
                     if(aux.getCauda()!=null)
                         proximaPalavra.inserir(aux.getCauda());
-                    palavra += aux.getPalavra();
+                    palavra = palavra + aux.getPalavra();
                     aux = aux.getCabeca();
                 }
                 else{
@@ -205,23 +204,20 @@ public class ArvorePatricia {
                     else{
                         if(proximaPalavra.filaVazia())
                             aux = null;
-                        else {
+                        else
+                        {
                             palavra = "";
                             aux = palavraAtual.retirar();
                             while (!palavraAtual.filaVazia()) {
-                                palavra += aux.getPalavra();
+                                palavra = palavra + aux.getPalavra();
                                 aux = palavraAtual.retirar();
                             }
                             aux = proximaPalavra.retirar();
                         }
                     }
                 }
-
-            palavraAtual = new Fila();
             }
-
+            palavraAtual = new Fila();
         }
-
-
     }
 }
