@@ -129,64 +129,99 @@ public class ArvorePatricia {
     public void mostrarNodos() {
         Fila nivelAtual = new Fila();
         Fila proximoNivel = new Fila();
-        int numeroNivel = 0;
+        Fila linha;
+        No no;
+        int nivel = 0;
 
-        // Imprime a raiz
-        System.out.println("Nivel " + numeroNivel + ":\t●");
-        numeroNivel++;
-
+        System.out.println("Nivel " + nivel + ":\t●");
+        nivel++;
         if (raiz.getCabeca() != null)
             nivelAtual.inserir(raiz.getCabeca());
-
-        while (!nivelAtual.filaVazia()) {
+        while (!nivelAtual.filaVazia())
+        {
             // Imprime os nós desse nível
-            Fila linha = new Fila();
-
-            while (!nivelAtual.filaVazia()) {
-                No no = nivelAtual.retirar();
-
-                while (no != null) {
+            linha = new Fila();
+            while (!nivelAtual.filaVazia())
+            {
+                no = nivelAtual.retirar();
+                while (no != null)
+                {
                     linha.inserir(no);
-
                     if (no.getCabeca() != null)
                         proximoNivel.inserir(no.getCabeca());
-
                     no = no.getCauda();
                 }
             }
-
-            // Imprime a linha com o número do nível
-            System.out.print("Nivel " + numeroNivel + ":");
-            while (!linha.filaVazia()) {
-                No no = linha.retirar();
+            // Imprime a linha com o numero do nivel
+            System.out.print("Nivel " + nivel + ":");
+            while (!linha.filaVazia())
+            {
+                no = linha.retirar();
                 System.out.print("\t" + no.getPalavra());
             }
             System.out.println();
-            numeroNivel++;
-
-            // Passa para o próximo nível
+            nivel++;
+            // Passa para o proximo nível
             nivelAtual = proximoNivel;
             proximoNivel = new Fila();
         }
     }
 
-
-
-    /*public void exibirPalavras(){
+    public void exibirPalavras(){
         No aux = null;
-        Pilha pilha = new Pilha();
-        String palavra = "";
-        pilha.inserir(raiz.getCabeca());
-        while (!pilha.pilhaVazia()){
-            aux = pilha.retirar();
-            while(aux.getCabeca()!=null){
-                pilha.inserir(aux);
-                palavra = palavra+aux.getPalavra();
-                if(aux.getFlag()==true)
-                    System.out.println();
-                aux = aux.getCabeca();
+        Fila nivelAtual = new Fila();
+        Fila palavraAtual = new Fila();
+        Fila proximaPalavra = new Fila();
+        String palavra;
+
+        aux = raiz.getCabeca();
+        while(aux!=null){
+            nivelAtual.inserir(aux);
+            aux = aux.getCauda();
+        }
+        System.out.println("\n\n# # # EXIBIÇÃO DE TODAS AS PALAVRAS # # #\n");
+        while(!nivelAtual.filaVazia()){
+            palavra = "";
+            aux = nivelAtual.retirar();
+
+            palavraAtual.inserir(aux);
+            palavra += aux.getPalavra();
+            if(aux.getFlag())
+                System.out.println(palavra);
+            aux = aux.getCabeca();
+            while(aux!=null){
+                if(aux.getFlag())
+                    System.out.println(palavra+aux.getPalavra());
+                if(aux.getCabeca()!=null){
+                    palavraAtual.inserir(aux);
+                    if(aux.getCauda()!=null)
+                        proximaPalavra.inserir(aux.getCauda());
+                    palavra += aux.getPalavra();
+                    aux = aux.getCabeca();
+                }
+                else{
+                    if(aux.getCauda()!=null)
+                        aux = aux.getCauda();
+                    else{
+                        if(proximaPalavra.filaVazia())
+                            aux = null;
+                        else {
+                            palavra = "";
+                            aux = palavraAtual.retirar();
+                            while (!palavraAtual.filaVazia()) {
+                                palavra += aux.getPalavra();
+                                aux = palavraAtual.retirar();
+                            }
+                            aux = proximaPalavra.retirar();
+                        }
+                    }
+                }
+
+            palavraAtual = new Fila();
             }
 
         }
-    }*/
+
+
+    }
 }

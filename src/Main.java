@@ -12,7 +12,7 @@ public class Main {
         // arvore.mostrar();
       }
 
-      // arvore.exibirPalavras();
+       arvore.exibirPalavras();
    }
 
    public static void inserirPalavras(String[] palavras) {
