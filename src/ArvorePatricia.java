@@ -86,8 +86,7 @@ public class ArvorePatricia {
                                     diferente = separarParteDiferente(info,aux.getPalavra());  // separa a parte diferente da palavra de aux
                                     igual = separarParteIgual(info,aux.getPalavra()); // separa a parte que é igual tanto para info quanto para a palvra de aux
                                     ant = aux.getCabeca();
-                                    novo.setPalavra(diferente);
-                                    novo.setCabeca(ant);
+                                    novo = new No(diferente,aux.getFlag(),ant,null);
                                     aux.setCabeca(novo); // adiciona essa parte diferente na cabeça de aux
                                     diferente = separarParteDiferente(aux.getPalavra(),info); // retira a parte de info que aux não possui
                                     aux.setPalavra(igual); // muda a palvra para a parte que ambos possuem
