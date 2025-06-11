@@ -5,13 +5,15 @@ public class Main {
       String[] palavras = new String[44];
       inserirPalavras(palavras);
 
-      for (int i = 43; i >= 0; i--) {
-         arvore.inserir(palavras[i], arvore.raiz);
-         arvore.mostrarNodos();
-         System.out.println("\n---------------------------------------------------");
-      }
+      for (int i = 43; i >= 0; i--)
+         arvore.inserir(palavras[i], arvore.raiz); // A
+      System.out.println("\n---------------------------------------------------");
+      System.out.println("# # # NODOS NÍVEL A NÍVEL # # #\n");
+      arvore.mostrarNodos();   // B
+      System.out.println("\n---------------------------------------------------");
+
       System.out.println("\n# # # EXIBIR TODAS AS PALAVRAS # # #\n");
-       arvore.exibirPalavras(arvore.raiz.getCabeca(),"");
+       arvore.exibirPalavras(arvore.raiz.getCabeca(),"");  // C
    }
 
    public static void inserirPalavras(String[] palavras) {

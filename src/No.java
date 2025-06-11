@@ -23,8 +23,6 @@ public class No {
         return i;
     }
 
-
-
     public String getPalavra() {
         return palavra;
     }
