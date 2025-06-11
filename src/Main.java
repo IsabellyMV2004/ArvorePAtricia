@@ -6,14 +6,14 @@ public class Main {
       inserirPalavras(palavras);
 
       for (int i = 73; i >= 0; i--)
-         arvore.inserir(palavras[i], arvore.raiz); // A
+         arvore.inserir(palavras[i], arvore.raiz); // QUESTÃO A
       System.out.println("\n---------------------------------------------------");
       System.out.println("# # # NODOS NÍVEL A NÍVEL # # #\n");
-      arvore.mostrarNodos();   // B
+      arvore.mostrarNodos();   // QUESTÃO B
       System.out.println("\n---------------------------------------------------");
 
       System.out.println("\n# # # EXIBIR TODAS AS PALAVRAS # # #\n");
-       arvore.exibirPalavras(arvore.raiz.getCabeca(),"");  // C
+       arvore.exibirPalavras(arvore.raiz.getCabeca(),"");  // QUESTÃO C
    }
 
    public static void inserirPalavras(String[] palavras) {
@@ -41,7 +41,7 @@ public class Main {
       palavras[42] = "zebra";           palavras[43] = "que";
       palavras[44] = "cachimbozinho";   palavras[45] = "ele";
       palavras[46] = "ela";             palavras[47] = "pesquisa";
-      palavras[48] = "navega";         palavras[49] = "tecnologia";
+      palavras[48] = "navega";          palavras[49] = "tecnologia";
       palavras[50] = "sapo";            palavras[51] = "saber";
       palavras[52] = "sabado";          palavras[53] = "uva";
       palavras[54] = "ovo";             palavras[55] = "ovelha";
