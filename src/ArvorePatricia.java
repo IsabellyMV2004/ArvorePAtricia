@@ -111,27 +111,27 @@ public class ArvorePatricia {
         System.out.println("Nivel " + nivel + ":\t●");
         nivel++;
         if (raiz.getCabeca() != null)
-            nivelAtual.inserir(raiz.getCabeca());
-        while (!nivelAtual.filaVazia())
+            nivelAtual.enqueue(raiz.getCabeca());
+        while (!nivelAtual.isEmpty())
         {
             // Imprime os nós desse nível
             linha = new Fila();
-            while (!nivelAtual.filaVazia())
+            while (!nivelAtual.isEmpty())
             {
-                no = nivelAtual.retirar();
+                no = nivelAtual.dequeue();
                 while (no != null)
                 {
-                    linha.inserir(no);
+                    linha.enqueue(no);
                     if (no.getCabeca() != null)
-                        proximoNivel.inserir(no.getCabeca());
+                        proximoNivel.enqueue(no.getCabeca());
                     no = no.getCauda();
                 }
             }
             // Imprime a linha com o numero do nivel
             System.out.print("Nivel " + nivel + ":");
-            while (!linha.filaVazia())
+            while (!linha.isEmpty())
             {
-                no = linha.retirar();
+                no = linha.dequeue();
                 System.out.print("\t" + no.getPalavra());
             }
             System.out.println();

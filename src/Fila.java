@@ -5,13 +5,13 @@ public class Fila {
         inicio = fim = null;
     }
 
-    public boolean filaVazia() {
+    public boolean isEmpty() {
         return inicio == null;
     }
 
-    public void inserir(No elemento) {
+    public void enqueue(No elemento) {
         NoFila novo = new NoFila(elemento);
-        if (filaVazia()) {
+        if (isEmpty()) {
             inicio = fim = novo;
         } else {
             fim.setProximo(novo);
@@ -19,8 +19,8 @@ public class Fila {
         }
     }
 
-    public No retirar() {
-        if (filaVazia())
+    public No dequeue() {
+        if (isEmpty())
             return null;
         No dado = inicio.getDado();
         inicio = inicio.getProximo();
